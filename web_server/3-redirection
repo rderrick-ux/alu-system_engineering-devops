@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# based on 1-install_nginx_web_server
+apt-get update -y
+apt-get install -y nginx
+
+# create custom homepage
+echo "Holberton School for the win!" > /var/www/html/index.html
+
+
+a
+# location directive for /redirect_me returning a 301 status
+sed -i 's|root /var/www/html;|root /var/www/html;\n    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }|' /etc/nginx/sites-available/default
+
+# start or restart nginx without systemctl
+service nginx restart
